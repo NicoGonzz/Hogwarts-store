@@ -1,1 +1,6 @@
-<p>img works!</p>
+<img width="200" (load)="imgLoaded()" (error)="imgError"
+[src]="img" alt="" *ngIf="img; else elseImg"> <!--Renderiza la imagen que escribamos-->
+<ng-template #elseImg>
+   <img src="imgDefault" alt=""> <!--Si no viene la imagen se muestra esta-->
+</ng-template>
+

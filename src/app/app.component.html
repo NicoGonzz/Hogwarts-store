@@ -1,1 +1,6 @@
-<app-img></app-img> <!--Componente-->
+<p><input type="text" [(ngModel)]="imgParent"></p>
+<app-img (loaded)="onLoaded($event)" [img]="imgParent"></app-img> <!--Componente-->
+<!--loaded es el evento del componente hijo que traeremos y mandamos el evento-->
+
+<app-product [myProduct]="product" *ngFor="let product of products"></app-product> <!--Imprimimos lo que hay en el componente app product-->
+
