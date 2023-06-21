@@ -6,10 +6,18 @@ import { Component, OnInit, Input,Output,EventEmitter, OnChanges,AfterViewChecke
   styleUrls: ['./img.component.scss']
 })
 export class ImgComponent implements OnInit, OnChanges, AfterViewInit {
+      /* @Input() img: string= '';*/
+      img: string = ''; /*Convierto mi input en un set-metodo cuando hay muchos es lo mejor*/
+      @Input('img')
+      set changeImg(newImg: string){
+        this.img = newImg;
+        console.log('change just img => ',this.img);
 
-      @Input() img: string= '';
+      }
       @Output() loaded = new EventEmitter<string>(); /*El event emiter transmite Strings*/
-       imageDefault="./assets/images/descarga.jpg";
+       imgDefault="./assets/images/descarga.jpg";
+       //counter=0;
+       //counterFn:number | undefined;
 
       constructor() { /*Lo que corre desde el inicio */
       /*No se pueden crear cosas asincronas como peticiones o fetchs y se corren una sola vez*/
@@ -25,6 +33,10 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit {
         /*Corre antes de renderizarce y corre UNA SOLA VEZ*/
         /*Aca podemos correr cosas asincronas como fetch-apis-promesas */
         console.log('ngOninit','imgValue =>',this.img);
+      /* this.counterFn = window.setInterval(()=>{
+             this.counter +=1;
+            console.log('run counter');
+        }, 1000);   Funcion de la varialbe win*/
       }
 
       ngAfterViewInit(): void {
@@ -35,10 +47,11 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit {
       ngOnDestroy(){
         /*Borrar un componente de la interfaz */
         console.log('ngOnDestroy');
+       /* window.clearInterval(this.counterFn); Limpia el evento y el intervalo*/
       }
 
       imgError(){
-        this.img = this.imageDefault; /*Si hay un error mostrara la otra imagen */
+        this.img = this.imgDefault; /*Si hay un error mostrara la otra imagen */
       }
       imgLoaded(){
         console.log('Log hijo');

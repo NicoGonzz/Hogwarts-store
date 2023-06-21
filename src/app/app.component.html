@@ -1,6 +1,8 @@
-<p><input type="text" [(ngModel)]="imgParent"></p>
-<app-img (loaded)="onLoaded($event)" [img]="imgParent"></app-img> <!--Componente-->
+<app-nav></app-nav>
+<app-products> </app-products>
+<!--<p><input type="text" [(ngModel)]="imgParent"></p>
+<button (click)="toggleImg">Toggle Img</button>
+<p>{{ showImg}}</p>
+<app-img   *ngIf="showImg"
+(loaded)="onLoaded($event)" [img]="imgParent"></app-img> Componente-->
 <!--loaded es el evento del componente hijo que traeremos y mandamos el evento-->
-
-<app-product [myProduct]="product" *ngFor="let product of products"></app-product> <!--Imprimimos lo que hay en el componente app product-->
-
