@@ -1,4 +1,4 @@
-import { Component ,Input} from '@angular/core';
+import { Component ,Input,Output,EventEmitter} from '@angular/core';
 import { Product}  from '../../models/products.model'; /*Importamos el modelo*/
 
 @Component({
@@ -14,7 +14,16 @@ export class ProductComponent {
     image: '',
     name: '',
   };
+  @Output() addedProduct =new EventEmitter<Product>();/*Nombre del evento que transmite informacion de tipo product */
+  @Output() substractProduct =new EventEmitter<Product>();
 
   constructor() {}
   ngOnInit(): void{}
+
+  onAddtoCar(){
+      this.addedProduct.emit(this.product);//Emitimos el producto
+  }
+  onSubstractcar(){
+      this.substractProduct.emit(this.product);
+  }
 }

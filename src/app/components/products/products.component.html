@@ -1,4 +1,14 @@
-<p><p>
+<p>
+   Cantidad de productos en mi carrito de compras: {{myShoppingCart.length}}
+<p>
+  <p>
+    Total $$: {{total}}
+  </p>
 <div class="products--grid">
-  <app-product [myProduct]="product" *ngFor="let product of products"></app-product> <!--Imprimimos lo que hay en el componente app product-->
+  <app-product
+  [myProduct]="product"
+  *ngFor="let product of products"
+  (addedProduct)="onAddToBuy($event)"
+  (substractProduct)="onSubstractToBuy($event)"> <!--Agregamos el evento del padre-->
+  </app-product> <!--Imprimimos lo que hay en el componente app product-->
 </div>

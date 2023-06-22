@@ -7,6 +7,9 @@ import {Product} from '../../models/products.model'
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
+
+  myShoppingCart: Product[] = [];
+  total=0;
   products : Product[] = [  //Creamos la interfaz y que sea igual a esa
       {
         id: '1',
@@ -68,4 +71,16 @@ export class ProductsComponent {
         image: './assets/images/voldemort.jpg'
       }/*Array de productos para el array*/
     ];
+    onAddToBuy(product : Product){
+      this.myShoppingCart.push(product);
+      this.total = this.myShoppingCart.reduce((sum,item)=> sum + item.price,0); //Suma el total del  precio de los items seleccionados
+      console.log(product); //Recibimos el producto de la clase hijo PRODUCT
+    }
+    onSubstractToBuy(product: Product){
+      const index = this.myShoppingCart.findIndex(item => item.id === product.id);
+      if (index !== -1) {
+        this.myShoppingCart.splice(index, 1); // Eliminar el producto del carrito
+        this.total -= product.price; // Restar el precio del producto al total
+      }
+    }
 }
