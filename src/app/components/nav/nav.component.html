@@ -1,6 +1,6 @@
 <div class="show-mobile">
   <div>
-    <button>
+    <button (click)="toggleMenu()">
       <img src="./assets/svg/icon_menu.svg" alt="menu">
     </button>
     <a href="">
@@ -9,6 +9,14 @@
     <a href="">
       <img src="./assets/svg/carroCompras.jpg" alt="logo">
     </a>
+  </div>
+  <div class="side-menu" [class.active]="activeMenu"><!--Menu lateral-->
+    <button (click)="toggleMenu()">Close</button>
+    <ul>
+    <li><a href="">TodosJuguetes</a></li>
+    <li><a href="">Funkos</a></li>
+    <li><a href="">JuegosMesa</a></li>
+    </ul>
   </div>
 </div>
 <div class="hide-mobile">
