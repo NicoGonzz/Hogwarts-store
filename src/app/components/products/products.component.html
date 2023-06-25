@@ -1,9 +1,9 @@
-<p>
-   Cantidad de productos en mi carrito de compras: {{myShoppingCart.length}}
-<p>
-  <p>
-    Total $$: {{total}}
-  </p>
+<div class="paragraphs-container">
+  <p>Cantidad de productos en mi carrito de compras: {{myShoppingCart.length}}</p>
+  <p>Total $$: {{total}}</p>
+  <p>Today: {{today | date: 'short'}}</p>
+  <p>Tiempo Conexion : {{today | timeAgo}}</p>
+</div>
 <div class="products--grid">
   <app-product
   [myProduct]="product"

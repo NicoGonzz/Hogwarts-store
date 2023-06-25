@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {Product} from '../../models/products.model'
+import { StoreService } from '../../services/store.service'
+import { ProductsService } from '../../services/products.service' //Traemos de donde traeremos los productos
 
 @Component({
   selector: 'app-products',
@@ -13,67 +15,83 @@ export class ProductsComponent {
   products : Product[] = [  //Creamos la interfaz y que sea igual a esa
       {
         id: '1',
-        name: 'Harry Potter',
+        title: 'Harry Potter',
         price: 500,
         image: './assets/images/potter.jpg',
       },
       {
         id: '1',
-        name: 'Hermione Granger',
+        title: 'Hermione Granger',
         price: 450,
         image: './assets/images/hermione.jpg'
       },
       {
         id: '2',
-        name: 'Ronald Weasley',
+        title: 'Ronald Weasley',
         price: 400,
         image: './assets/images/weasley.jpg'
       },
       {
         id: '3',
-        name: 'Draco Malfoy',
+        title: 'Draco Malfoy',
         price: 350,
         image: './assets/images/draco.jpg'
       },
       {
         id: '4',
-        name: 'Luna Lovegood',
+        title: 'Luna Lovegood',
         price: 250,
         image: './assets/images/luna.jpg'
       },
       {
         id: '4',
-        name: 'Lord Voldemort',
+        title: 'Lord Voldemort',
         price: 500,
         image: './assets/images/voldemort.jpg'
       },
       {
         id: '4',
-        name: 'Lord Voldemort',
+        title: 'Lord Voldemort',
         price: 500,
         image: './assets/images/voldemort.jpg'
       },
       {
         id: '5',
-        name: 'Lord Voldemort',
+        title: 'Lord Voldemort',
         price: 500,
         image: './assets/images/voldemort.jpg'
       },
       {
         id: '6',
-        name: 'Lord Voldemort',
+        title: 'Lord Voldemort',
         price: 500,
         image: './assets/images/voldemort.jpg'
       },
       { id: '7',
-        name: 'Lord Voldemort',
+        title: 'Lord Voldemort',
         price: 500,
         image: './assets/images/voldemort.jpg'
       }/*Array de productos para el array*/
     ];
+    today = new Date(); //Pipe de fecha
+    date = new Date(2021,3,3);
+      constructor
+      (private storeService : StoreService,
+       private productsService: ProductsService ){ /*Inyeccion de dependencias*/
+      //Asi podemos usar el storeservice dentro de un componente
+        this.myShoppingCart = this.storeService.myShoppingCart;
+    }
+      ngOnInit(){
+        this.productsService.getAllProducts()
+        .subscribe(data =>{
+          this.products = data;
+        });// Funcion para traer datos
+      }
     onAddToBuy(product : Product){
-      this.myShoppingCart.push(product);
-      this.total = this.myShoppingCart.reduce((sum,item)=> sum + item.price,0); //Suma el total del  precio de los items seleccionados
+      this.storeService.addProduct(product);
+      this.total = this.storeService.getTotal();;
+      //this.myShoppingCart.push(product);
+      //this.total = this.myShoppingCart.reduce((sum,item)=> sum + item.price,0); //Suma el total del  precio de los items seleccionados
       console.log(product); //Recibimos el producto de la clase hijo PRODUCT
     }
     onSubstractToBuy(product: Product){

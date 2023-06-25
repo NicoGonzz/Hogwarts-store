@@ -1,43 +1,40 @@
-<div class="show-mobile">
-  <div>
-    <button (click)="toggleMenu()">
-      <img src="./assets/svg/icon_menu.svg" alt="menu">
-    </button>
-    <a href="">
-      <img src="./assets/svg/HarryStore.jpg" alt="logo">
-    </a>
-    <a href="">
-      <img src="./assets/svg/carroCompras.jpg" alt="logo">
-    </a>
-  </div>
-  <div class="side-menu" [class.active]="activeMenu"><!--Menu lateral-->
-    <button (click)="toggleMenu()">Close</button>
-    <ul>
-    <li><a href="">TodosJuguetes</a></li>
-    <li><a href="">Funkos</a></li>
-    <li><a href="">JuegosMesa</a></li>
-    </ul>
-  </div>
-</div>
-<div class="hide-mobile">
-  <div>
-    <nav>
-      <a class="logo" href="">
-        <img width="60px" src="./assets/svg/HarryStore.jpg" alt="logo">
-      </a>
-      <ul>
-        <li><a href="">TodosJuguetes</a></li>
-        <li><a href="">Funkos</a></li>
-        <li><a href="">JuegosMesa</a></li>
-      </ul>
-    </nav>
-    <div class="info">
-      <div class="account">juannico@correo.com</div>
-      <div>
-        <a href="">
-          <img width="50px"   src="./assets/svg/carroCompras.jpg" alt="logo">
-        </a>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <body>
+
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Hogwarts Store</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Todo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Ropa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Jugueteria</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
       </div>
     </div>
-  </div>
-</div>
+  </nav>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+</body>
+</html>

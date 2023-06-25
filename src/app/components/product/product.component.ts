@@ -12,7 +12,7 @@ export class ProductComponent {
     id: '',
     price: 0,
     image: '',
-    name: '',
+    title: '',
   };
   @Output() addedProduct =new EventEmitter<Product>();/*Nombre del evento que transmite informacion de tipo product */
   @Output() substractProduct =new EventEmitter<Product>();
