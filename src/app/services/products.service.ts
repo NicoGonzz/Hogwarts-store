@@ -8,12 +8,12 @@ import { Product } from '../models/products.model';
 export class ProductsService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient //Creamos el servicio y por inyeccion de dependencias incorporamos el cliente
   ) {
   }
 
   getAllProducts() { /*LLamamos a product service de todos los productos */
-      return this.http.get<Product[]>('https://fakestoreapi.com/products');
+      return this.http.get<Product[]>('https://young-sands-07814.herokuapp.com/api/products');
       //Tipamos la peticion con <> para decirle de que forma queremos que traiga el objeto
 
   }

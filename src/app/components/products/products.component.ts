@@ -13,7 +13,7 @@ export class ProductsComponent {
   myShoppingCart: Product[] = [];
   total=0;
   products : Product[] = [  //Creamos la interfaz y que sea igual a esa
-      {
+      /*{
         id: '1',
         title: 'Harry Potter',
         price: 500,
@@ -71,7 +71,7 @@ export class ProductsComponent {
         title: 'Lord Voldemort',
         price: 500,
         image: './assets/images/voldemort.jpg'
-      }/*Array de productos para el array*/
+      }Array de productos para el array*/
     ];
     today = new Date(); //Pipe de fecha
     date = new Date(2021,3,3);

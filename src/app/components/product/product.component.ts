@@ -8,11 +8,16 @@ import { Product}  from '../../models/products.model'; /*Importamos el modelo*/
 })
 export class ProductComponent {
 
-  @Input('myProduct') product: Product = { /*Iniciamos todo en vacio */
+  @Input() product: Product = {
     id: '',
     price: 0,
-    image: '',
+    images: [],
     title: '',
+    category: {
+      id: '',
+      name: '',
+    },
+    description: ''
   };
   @Output() addedProduct =new EventEmitter<Product>();/*Nombre del evento que transmite informacion de tipo product */
   @Output() substractProduct =new EventEmitter<Product>();
