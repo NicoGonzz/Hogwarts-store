@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Product} from '../../models/products.model'
+import {Product , CreateProductDTO} from '../../models/products.model'
 import { StoreService } from '../../services/store.service'
 import { ProductsService } from '../../services/products.service' //Traemos de donde traeremos los productos
 
@@ -13,66 +13,20 @@ export class ProductsComponent {
   myShoppingCart: Product[] = [];
   total=0;
   products : Product[] = [  //Creamos la interfaz y que sea igual a esa
-      /*{
-        id: '1',
-        title: 'Harry Potter',
-        price: 500,
-        image: './assets/images/potter.jpg',
-      },
-      {
-        id: '1',
-        title: 'Hermione Granger',
-        price: 450,
-        image: './assets/images/hermione.jpg'
-      },
-      {
-        id: '2',
-        title: 'Ronald Weasley',
-        price: 400,
-        image: './assets/images/weasley.jpg'
-      },
-      {
-        id: '3',
-        title: 'Draco Malfoy',
-        price: 350,
-        image: './assets/images/draco.jpg'
-      },
-      {
-        id: '4',
-        title: 'Luna Lovegood',
-        price: 250,
-        image: './assets/images/luna.jpg'
-      },
-      {
-        id: '4',
-        title: 'Lord Voldemort',
-        price: 500,
-        image: './assets/images/voldemort.jpg'
-      },
-      {
-        id: '4',
-        title: 'Lord Voldemort',
-        price: 500,
-        image: './assets/images/voldemort.jpg'
-      },
-      {
-        id: '5',
-        title: 'Lord Voldemort',
-        price: 500,
-        image: './assets/images/voldemort.jpg'
-      },
-      {
-        id: '6',
-        title: 'Lord Voldemort',
-        price: 500,
-        image: './assets/images/voldemort.jpg'
-      },
-      { id: '7',
-        title: 'Lord Voldemort',
-        price: 500,
-        image: './assets/images/voldemort.jpg'
-      }Array de productos para el array*/
+
     ];
+    showProductDetail = false;
+    productChosen: Product = {
+      id: '',
+      price: 0,
+      images: [],
+      title: '',
+      category: {
+        id: '',
+        name: '',
+      },
+      description: ''
+    };
     today = new Date(); //Pipe de fecha
     date = new Date(2021,3,3);
       constructor
@@ -100,5 +54,30 @@ export class ProductsComponent {
         this.myShoppingCart.splice(index, 1); // Eliminar el producto del carrito
         this.total -= product.price; // Restar el precio del producto al total
       }
+    }
+    toggleProductDetail(){ //Activamos el producto
+      this.showProductDetail = !this.showProductDetail; //El estado del producto cambia
+    }
+    onShowDetail(id: string){
+      this.productsService.getProduct(id)
+      .subscribe(data =>{
+        this.toggleProductDetail();
+        this.productChosen = data;
+      })
+          //console.log('Id'); //Recibimos el evento y con este podemos hacer requests
+    }
+    createNewProduct(){
+      const product : CreateProductDTO = {
+          title: 'Harry Potter',
+          price: 500,
+          images: ['./assets/images/hermione.jpg'],
+          description: 'Juguete de Hermione Grenger ',
+          categoryId: 2,
+      }
+      this.productsService.create(product)
+      .subscribe(data=>{
+        console.log('created',data);
+        this.products.unshift(data); //Insertamos el nuevo producto al array en la primera posicion
+      }); //Envio interfaz tipo producto
     }
 }

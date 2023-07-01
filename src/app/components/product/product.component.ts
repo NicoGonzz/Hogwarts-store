@@ -21,7 +21,7 @@ export class ProductComponent {
   };
   @Output() addedProduct =new EventEmitter<Product>();/*Nombre del evento que transmite informacion de tipo product */
   @Output() substractProduct =new EventEmitter<Product>();
-
+  @Output() showProduct = new EventEmitter<string>();
   constructor() {}
   ngOnInit(): void{}
 
@@ -30,5 +30,8 @@ export class ProductComponent {
   }
   onSubstractcar(){
       this.substractProduct.emit(this.product);
+  }
+  onShowDetail(){
+    this.showProduct.emit(this.product.id); //Emitimos el producto y devolvera el id del producto
   }
 }

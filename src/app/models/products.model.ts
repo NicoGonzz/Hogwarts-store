@@ -10,3 +10,7 @@ export interface Product { /*Que esperamos que tenga el producto*/
   description: string;
   category:Category;
 }
+export interface CreateProductDTO extends Omit<Product, 'id'| 'category'> { /*Nueva interfaz para enviar un producto extendida*/
+  categoryId: number,
+}
+//Omit evita que se clonen ciertos campos
