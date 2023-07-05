@@ -13,4 +13,8 @@ export interface Product { /*Que esperamos que tenga el producto*/
 export interface CreateProductDTO extends Omit<Product, 'id'| 'category'> { /*Nueva interfaz para enviar un producto extendida*/
   categoryId: number,
 }
+
+export interface UpdateProductDTO extends Partial<CreateProductDTO>{
+ //El parcial pone todos los atributos opcionales
+}
 //Omit evita que se clonen ciertos campos

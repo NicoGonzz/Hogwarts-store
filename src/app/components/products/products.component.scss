@@ -21,6 +21,10 @@
   &.active{
     transform: translateX(0);
   }
+  img{
+      width: 250px;
+      height: 250px;
+  }
 }
 //Dimensiones para tablets
 @media screen and (min-width: 40em) and (max-width: 63.9em){

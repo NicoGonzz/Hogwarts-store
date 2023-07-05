@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Product , CreateProductDTO} from '../models/products.model';
+import { Product , CreateProductDTO,UpdateProductDTO} from '../models/products.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +26,13 @@ export class ProductsService {
   create(dto: CreateProductDTO){ //Crear producto con la interfaz de tipo Product
     return this.http.post<Product>(this.apiURL,dto); //Retornara un producto y vendra el nuevo producto
    }
+
+   update(id:string,dto: UpdateProductDTO ){
+    return this.http.put<Product>(`${this.apiURL}/${id}`,dto); //Patch actualizara solo una cosa mientras que put enviara Todo el cuerpo del producto
+   }
+
+   delete(id: string){
+    return this.http.delete<boolean>(`${this.apiURL}/${id}`); //Retorna un boolean para ver si borro o no el elemento
+   }
+
 }

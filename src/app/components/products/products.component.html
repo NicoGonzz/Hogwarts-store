@@ -1,4 +1,4 @@
-<button (click)="createNewProduct()">Create</button>
+<!--<button (click)="createNewProduct()">Create</button>-->
 <div class="paragraphs-container">
   <p>Cantidad de productos en mi carrito de compras: {{myShoppingCart.length}}</p>
   <p>Total $$: {{total}}</p>
@@ -25,5 +25,7 @@
         </swiper-slide>
       </swiper-container>
       <p>{{productChosen.description}}</p>
+      <button (click)="updateProduct()">Editar</button>
+      <button (click)="deleteProduct()">Eliminar</button>
   </div>
 </div>

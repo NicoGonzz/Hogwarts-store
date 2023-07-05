@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Product , CreateProductDTO} from '../../models/products.model'
+import {Product , CreateProductDTO, UpdateProductDTO} from '../../models/products.model'
 import { StoreService } from '../../services/store.service'
 import { ProductsService } from '../../services/products.service' //Traemos de donde traeremos los productos
 
@@ -68,10 +68,10 @@ export class ProductsComponent {
     }
     createNewProduct(){
       const product : CreateProductDTO = {
-          title: 'Harry Potter',
-          price: 500,
-          images: ['./assets/images/hermione.jpg'],
-          description: 'Juguete de Hermione Grenger ',
+          title: 'Lord Voldemort',
+          price: 350,
+          images: ['./assets/images/voldemort.jpg'],
+          description: 'Juguete de Lord Voldemort ',
           categoryId: 2,
       }
       this.productsService.create(product)
@@ -79,5 +79,31 @@ export class ProductsComponent {
         console.log('created',data);
         this.products.unshift(data); //Insertamos el nuevo producto al array en la primera posicion
       }); //Envio interfaz tipo producto
+    }
+    generateRandomImageUrl() {
+
+    }
+      updateProduct(){
+        const changes: UpdateProductDTO={
+          images: [`https://m.media-amazon.com/images/I/71uDtF71f+L._AC_UY1100_.jpg`],
+        }
+        const id = this.productChosen.id;
+        this.productsService.update(id,changes)
+        .subscribe(data=>{
+          const productIndex = this.products.findIndex(item => item.id === this.productChosen.id);
+          this.products[productIndex] = data;
+          this.productChosen = data;
+        }); //Corrobora el tipado
+      }
+
+    deleteProduct(){
+      const id = this.productChosen.id;
+      this.productsService.delete(id)
+      .subscribe(() =>{
+        const productIndex = this.products.findIndex(item => item.id === this.productChosen.id);
+        this.products.splice(productIndex,1);
+        this.showProductDetail = false;
+        // Necesitamos el index para ver cual array de productos vamos a remover
+      })
     }
 }
