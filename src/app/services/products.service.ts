@@ -23,6 +23,12 @@ export class ProductsService {
       //Cojemos un unico producto y la url y despues con el / me traera el ID
     }
 
+  getProductsByPage(limit: number , offset: number){
+    return this.http.get<Product[]>(`${this.apiURL}`,{
+      params: {limit,offset} //Se envian los parametros por URL de limit y offset
+    }) //get porque obtenemos informacion
+  }
+
   create(dto: CreateProductDTO){ //Crear producto con la interfaz de tipo Product
     return this.http.post<Product>(this.apiURL,dto); //Retornara un producto y vendra el nuevo producto
    }

@@ -15,6 +15,7 @@
   > <!--Agregamos el evento del padre-->
   </app-product> <!--Imprimimos lo que hay en el componente app product-->
 </div>
+<button class="moreProducts" (click)="loadMoreProducts()">CargarMas</button>
 <div class="product-detail" [class.active]="showProductDetail">
   <div *ngIf="productChosen"> <!--Se muestra solo si hay un producto seleccionado-->
     <button (click)="toggleProductDetail()">Close</button>

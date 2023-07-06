@@ -27,6 +27,8 @@ export class ProductsComponent {
       },
       description: ''
     };
+    limit= 10; //Muestra de a 10 elementos
+    offset = 0; //Punto inicial
     today = new Date(); //Pipe de fecha
     date = new Date(2021,3,3);
       constructor
@@ -36,9 +38,11 @@ export class ProductsComponent {
         this.myShoppingCart = this.storeService.myShoppingCart;
     }
       ngOnInit(){
-        this.productsService.getAllProducts()
+        //this.productsService.getAllProducts() Se traen todos los productos
+        this.productsService.getProductsByPage(10,0) //Se traen 10 productos en la pagina 0
         .subscribe(data =>{
           this.products = data;
+          this.offset += this.limit;
         });// Funcion para traer datos
       }
     onAddToBuy(product : Product){
@@ -105,5 +109,13 @@ export class ProductsComponent {
         this.showProductDetail = false;
         // Necesitamos el index para ver cual array de productos vamos a remover
       })
+    }
+
+    loadMoreProducts(){
+      this.productsService.getProductsByPage(10,0) //Se traen 10 productos en la pagina 0
+      .subscribe(data =>{
+        this.products = this.products.concat(data); //No se sobreescribe el array sino se agreganlos nuevos datos
+        this.offset = this.limit;//Cuando se haga el request se aumenten los elementos del limit
+      });
     }
 }
