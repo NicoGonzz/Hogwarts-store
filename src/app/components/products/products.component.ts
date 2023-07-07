@@ -29,6 +29,7 @@ export class ProductsComponent {
     };
     limit= 10; //Muestra de a 10 elementos
     offset = 0; //Punto inicial
+    statusDetail: 'loading' | 'sucess' | 'error' | 'init' = 'init';
     today = new Date(); //Pipe de fecha
     date = new Date(2021,3,3);
       constructor
@@ -38,10 +39,67 @@ export class ProductsComponent {
         this.myShoppingCart = this.storeService.myShoppingCart;
     }
       ngOnInit(){
+        const predefinedProducts = [
+          {
+            id: '1',
+            title: 'Harry Potter',
+            price: 500,
+            images: ['./assets/images/potter.jpg'],
+            description: 'Juguetito chevere',
+            category: {
+              id: '',
+              name: ''
+            }
+          },
+          {
+            id: '2',
+            title: 'Hermione Granger',
+            price: 450,
+            images: ['./assets/images/hermione.jpg'],
+            description: 'Juguetito chevere',
+            category: {
+              id: '',
+              name: ''
+            }
+          },
+          {
+            id: '3',
+            title: 'Ronald Weasley',
+            price: 400,
+            images: ['./assets/images/weasley.jpg'],
+            description: 'Juguetito chevere',
+            category: {
+              id: '',
+              name: ''
+            }
+          },
+          {
+            id: '4',
+            title: 'Draco Malfoy',
+            price: 350,
+            images: ['./assets/images/draco.jpg'],
+            description: 'Juguetito chevere',
+            category: {
+              id: '',
+              name: ''
+            }
+          },
+          {
+            id: '5',
+            title: 'Luna Lovegood',
+            price: 250,
+            images: ['./assets/images/luna.jpg'],
+            description: 'Juguetito chevere',
+            category: {
+              id: '',
+              name: ''
+            }
+          },
+           ];
         //this.productsService.getAllProducts() Se traen todos los productos
         this.productsService.getProductsByPage(10,0) //Se traen 10 productos en la pagina 0
         .subscribe(data =>{
-          this.products = data;
+          this.products = predefinedProducts.concat(data);
           this.offset += this.limit;
         });// Funcion para traer datos
       }
@@ -63,17 +121,23 @@ export class ProductsComponent {
       this.showProductDetail = !this.showProductDetail; //El estado del producto cambia
     }
     onShowDetail(id: string){
+      this.statusDetail= 'loading';
+      this.toggleProductDetail();
       this.productsService.getProduct(id)
       .subscribe(data =>{
-        this.toggleProductDetail();
         this.productChosen = data;
+        this.statusDetail = 'sucess';
+      },errMsg =>{
+        window.alert(errMsg);
+        this.statusDetail = 'error';
+        //console.error(response); Muestra el error al momento de traer un producto diferente
       })
           //console.log('Id'); //Recibimos el evento y con este podemos hacer requests
     }
     createNewProduct(){
       const product : CreateProductDTO = {
-          title: 'Lord Voldemort',
-          price: 350,
+          title: 'Nuevo Producto',
+          price: 400,
           images: ['./assets/images/voldemort.jpg'],
           description: 'Juguete de Lord Voldemort ',
           categoryId: 2,
@@ -84,9 +148,7 @@ export class ProductsComponent {
         this.products.unshift(data); //Insertamos el nuevo producto al array en la primera posicion
       }); //Envio interfaz tipo producto
     }
-    generateRandomImageUrl() {
 
-    }
       updateProduct(){
         const changes: UpdateProductDTO={
           images: [`https://m.media-amazon.com/images/I/71uDtF71f+L._AC_UY1100_.jpg`],

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { delay, retry,catchError } from 'rxjs'; //Reintenta una peticion
+import { throwError } from 'rxjs';
 import { Product , CreateProductDTO,UpdateProductDTO} from '../models/products.model';
 
 @Injectable({
@@ -15,12 +17,29 @@ export class ProductsService {
   }
 
   getAllProducts() { /*LLamamos a product service de todos los productos */
-      return this.http.get<Product[]>(this.apiURL);
+      return this.http.get<Product[]>(this.apiURL)
+      .pipe( //Se reintenta esta peticion 3 veces si no entra a la URL
+          retry(3)
+      );
       //Tipamos la peticion con <> para decirle de que forma queremos que traiga el objeto
   }
   getProduct(id: string){ //Primero ponemos el parametro de entrada en este caso string
       return this.http.get<Product>(`${this.apiURL}/${id}`) //get porque obtenemos informacion
       //Cojemos un unico producto y la url y despues con el / me traera el ID
+      .pipe( //CATCHError captura el error
+        catchError((error: HttpErrorResponse) =>{
+              if(error.status === HttpStatusCode.Conflict) { //Si hay un error del estado 500 se muestra en el front
+                return throwError('Hay un error en el servidor');
+              }
+              if(error.status === HttpStatusCode.NotFound){// Error 404
+                return throwError('El producto no existe');
+              }
+              if(error.status === HttpStatusCode.Unauthorized){
+                return throwError('No estas autorizado');
+              }
+              return throwError('Ups algo salio mal');
+        })
+      )
     }
 
   getProductsByPage(limit: number , offset: number){
