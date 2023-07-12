@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { zip } from 'rxjs'; //Permite enviar 2 observadores y recibir respuestas de ambos al tiempo
+import { switchMap } from 'rxjs'; //Evita el callback Hell
 import {Product , CreateProductDTO, UpdateProductDTO} from '../../models/products.model'
 import { StoreService } from '../../services/store.service'
 import { ProductsService } from '../../services/products.service' //Traemos de donde traeremos los productos
@@ -95,7 +97,61 @@ export class ProductsComponent {
               name: ''
             }
           },
-           ];
+          {
+            id: '6',
+            title: 'Luna Lovegood',
+            price: 250,
+            images: ['./assets/images/luna.jpg'],
+            description: 'Juguetito chevere',
+            category: {
+              id: '',
+              name: ''
+            }
+          },
+          {
+            id: '7',
+            title: 'Luna Lovegood',
+            price: 250,
+            images: ['./assets/images/luna.jpg'],
+            description: 'Juguetito chevere',
+            category: {
+              id: '',
+              name: ''
+            }
+          },
+          {
+            id: '8',
+            title: 'Luna Lovegood',
+            price: 250,
+            images: ['./assets/images/luna.jpg'],
+            description: 'Juguetito chevere',
+            category: {
+              id: '',
+              name: ''
+            }
+          },
+          {
+            id: '9',
+            title: 'Luna Lovegood',
+            price: 250,
+            images: ['./assets/images/luna.jpg'],
+            description: 'Juguetito chevere',
+            category: {
+              id: '',
+              name: ''
+            }
+          },
+          {
+            id: '10',
+            title: 'Lord Voldemort',
+            price: 500,
+            images: ['./assets/images/voldemort.jpg'],
+            description: 'Juguetito chevere',
+            category: {
+              id: '',
+              name: ''
+            }
+          } ];
         //this.productsService.getAllProducts() Se traen todos los productos
         this.productsService.getProductsByPage(10,0) //Se traen 10 productos en la pagina 0
         .subscribe(data =>{
@@ -117,9 +173,11 @@ export class ProductsComponent {
         this.total -= product.price; // Restar el precio del producto al total
       }
     }
+
     toggleProductDetail(){ //Activamos el producto
       this.showProductDetail = !this.showProductDetail; //El estado del producto cambia
     }
+
     onShowDetail(id: string){
       this.statusDetail= 'loading';
       this.toggleProductDetail();
@@ -134,6 +192,25 @@ export class ProductsComponent {
       })
           //console.log('Id'); //Recibimos el evento y con este podemos hacer requests
     }
+
+    readAndUpdate(id: string){ //Id del producto obtenido y actualizado
+        this.productsService.getProduct(id)
+        .pipe(
+          switchMap((product) => //La respuesta de uno me da el valor de otro
+          this.productsService.update(product.id,{title: 'TituloActualizado'})),
+          //Evitamos calbackHell this.productsService.update(product.id,{title: 'TituloActualizado'}),
+          //this.productsService.update(product.id,{title: 'TituloActualizado'}))
+          )
+          .subscribe(data =>{ //Cuando acabe de ejecutar todo todo
+              console.log(data);
+          });
+          this.productsService.fetchReadandUpdate(id,{title: 'Titulo Cambiado'})
+          .subscribe(response =>{
+            const read = response[0]; // Ponemos el primer observaod getProductId
+            const update = response[1]; //Update(id,title)
+          })
+    }
+
     createNewProduct(){
       const product : CreateProductDTO = {
           title: 'Nuevo Producto',

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { zip } from 'rxjs'; //Permite enviar 2 observadores y recibir respuestas de ambos al tiempo
 import { delay, retry,catchError } from 'rxjs'; //Reintenta una peticion
 import { throwError } from 'rxjs';
 import { Product , CreateProductDTO,UpdateProductDTO} from '../models/products.model';
@@ -23,6 +24,14 @@ export class ProductsService {
       );
       //Tipamos la peticion con <> para decirle de que forma queremos que traiga el objeto
   }
+
+  fetchReadandUpdate(id:string, dto: UpdateProductDTO){ //Abstraemos la logica del componente products
+    return zip(
+      this.getProduct(id),
+      this.update(id,dto) //Dto con los cambios
+    )
+  }
+
   getProduct(id: string){ //Primero ponemos el parametro de entrada en este caso string
       return this.http.get<Product>(`${this.apiURL}/${id}`) //get porque obtenemos informacion
       //Cojemos un unico producto y la url y despues con el / me traera el ID
