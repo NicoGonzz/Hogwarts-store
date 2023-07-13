@@ -4,13 +4,14 @@ import { zip } from 'rxjs'; //Permite enviar 2 observadores y recibir respuestas
 import { delay, retry,catchError } from 'rxjs'; //Reintenta una peticion
 import { throwError } from 'rxjs';
 import { Product , CreateProductDTO,UpdateProductDTO} from '../models/products.model';
+import {environment} from '../../Environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  private apiURL = 'https://young-sands-07814.herokuapp.com/api/products'; //
+  private apiURL = `${environment.API_URL}/api/products`; //
 
   constructor(
     private http: HttpClient //Creamos el servicio y por inyeccion de dependencias incorporamos el cliente
