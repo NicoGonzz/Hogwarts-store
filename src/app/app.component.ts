@@ -10,6 +10,7 @@ import { UsersService } from './services/users.service';
 export class AppComponent {
   imgParent = '';
   showImg= true;
+  token= '';//Guardamos el token en memoria
 
   constructor(
     private authService : AuthService,
@@ -33,13 +34,5 @@ export class AppComponent {
     });
   }
 
-  login(){
-    this.authService.login(
-      'nicolas@gmail.com',
-       'nicolas1234'
-    )
-    .subscribe(rta=>{
-      console.log(rta.access_token);
-    });
-  }
+
 }
