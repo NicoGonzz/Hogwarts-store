@@ -1,11 +1,15 @@
 .navbar{
-  background: linear-gradient(to right, yellow, red, orange);
-}
+  background: url('../../../assets/images/NavBarHarryPotter.jpg');
+  background-size: cover;
+  background-position: 0%;
+  background-repeat: no-repeat;}
 .navbar-brand{
   font-style: oblique;
+  color: white
 }
 .nav-link{
   font-size: 18px;
+  color: white;
 }
 .account {
   margin-right: 30px;
