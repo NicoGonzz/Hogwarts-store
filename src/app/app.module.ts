@@ -14,12 +14,14 @@ import { NavComponent } from './components/nav/nav.component';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { TimeInterceptor } from './interceptors/time.interceptor';
+import { RegistroComponent } from './components/registro/registro.component';
 
 register();
 
 const routes:Routes=[
-  { path: '',redirectTo:'/',pathMatch:'full'},
-  { path: 'registro',component:ProductComponent} //Nos lleva al componente
+  { path: '',redirectTo:'/Inicio',pathMatch:'full'},
+  { path: 'Inicio',component:AppComponent}, //Nos lleva al componente
+  { path: 'Registro',component:RegistroComponent},
 ]
 
 @NgModule({
@@ -30,13 +32,15 @@ const routes:Routes=[
     ProductsComponent,
     NavComponent,
     TimeAgoPipe,
-    HighlightDirective
+    HighlightDirective,
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS , useClass: TimeInterceptor, multi: true}
