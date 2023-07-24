@@ -99,9 +99,9 @@ export class ProductsComponent {
           },
           {
             id: '6',
-            title: 'Luna Lovegood',
-            price: 250,
-            images: ['./assets/images/luna.jpg'],
+            title: 'Sirious Black',
+            price: 280,
+            images: ['./assets/images/Sirius.jpg'],
             description: 'Juguetito chevere',
             category: {
               id: '',
@@ -110,9 +110,9 @@ export class ProductsComponent {
           },
           {
             id: '7',
-            title: 'Luna Lovegood',
-            price: 250,
-            images: ['./assets/images/luna.jpg'],
+            title: 'Rubeus Hagrid',
+            price: 400,
+            images: ['./assets/images/Hagrid.jpg'],
             description: 'Juguetito chevere',
             category: {
               id: '',
@@ -121,9 +121,9 @@ export class ProductsComponent {
           },
           {
             id: '8',
-            title: 'Luna Lovegood',
-            price: 250,
-            images: ['./assets/images/luna.jpg'],
+            title: 'Dobby',
+            price: 320,
+            images: ['./assets/images/Dobby.jpg'],
             description: 'Juguetito chevere',
             category: {
               id: '',
@@ -132,9 +132,9 @@ export class ProductsComponent {
           },
           {
             id: '9',
-            title: 'Luna Lovegood',
-            price: 250,
-            images: ['./assets/images/luna.jpg'],
+            title: 'Dumbledore',
+            price: 340,
+            images: ['./assets/images/Dumbledore.jpg'],
             description: 'Juguetito chevere',
             category: {
               id: '',
