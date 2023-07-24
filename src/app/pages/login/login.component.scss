@@ -1,0 +1,45 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.form-registro{
+  width: 500px;
+  background: url('../../../assets/images/NavBarHarryPotter.jpg');;
+  padding: 100px;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 150px;
+  border-radius: 4px;
+  font-family: 'calibri';
+  color: white;
+  box-shadow: 7px 13px 37px #f5430c;
+}
+
+.form-registro h4{
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.control{
+  width: 100%;
+  background: #24303c;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 1px solid #1f54c5;
+  font-family: 'calibri';
+  font-size: 18px;
+}
+
+.button{
+  width: 100%;
+  background: #1f54c5;
+  border: none;
+  border-radius: 2px;
+  padding: 12px;
+  color: white;
+  margin: 16px 0;
+  font-size: 16px;
+      }
