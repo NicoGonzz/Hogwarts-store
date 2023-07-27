@@ -40,6 +40,9 @@ export class ProductsComponent {
       //Asi podemos usar el storeservice dentro de un componente
         this.myShoppingCart = this.storeService.myShoppingCart;
     }
+    predefinedProducts: Product[] = [
+      // Contenido de predefinedProducts...
+    ];
       ngOnInit(){
         const predefinedProducts = [
           {
@@ -178,20 +181,31 @@ export class ProductsComponent {
       this.showProductDetail = !this.showProductDetail; //El estado del producto cambia
     }
 
-    onShowDetail(id: string){
-      this.statusDetail= 'loading';
-      this.toggleProductDetail();
-      this.productsService.getProduct(id)
-      .subscribe(data =>{
-        this.productChosen = data;
-        this.statusDetail = 'sucess';
-      },errMsg =>{
-        window.alert(errMsg);
-        this.statusDetail = 'error';
-        //console.error(response); Muestra el error al momento de traer un producto diferente
-      })
-          //console.log('Id'); //Recibimos el evento y con este podemos hacer requests
+    onShowDetail(id: string) {
+    this.statusDetail = 'loading';
+    this.toggleProductDetail();
+
+    // Verificar si el producto está en predefinedProducts
+    const predefinedProduct = this.predefinedProducts.find((product) => product.id === id);
+
+    if (predefinedProduct) {
+      this.productChosen = predefinedProduct;
+      this.statusDetail = 'sucess';
+    } else {
+      // Producto no encontrado en predefinedProducts, obtenerlo del servicio
+      this.productsService.getProduct(id).subscribe(
+        (data) => {
+          this.productChosen = data;
+          this.statusDetail = 'sucess';
+        },
+        (errMsg) => {
+          window.alert(errMsg);
+          this.statusDetail = 'error';
+        }
+      );
     }
+  }
+
 
     readAndUpdate(id: string){ //Id del producto obtenido y actualizado
         this.productsService.getProduct(id)
@@ -213,11 +227,11 @@ export class ProductsComponent {
 
     createNewProduct(){
       const product : CreateProductDTO = {
-          title: 'Nuevo Producto',
-          price: 400,
-          images: ['./assets/images/voldemort.jpg'],
-          description: 'Juguete de Lord Voldemort ',
-          categoryId: 2,
+          title: 'Bellatrix Lestrange',
+          price: 280,
+          images: ['https://m.media-amazon.com/images/I/51Q0oUoj7pL.jpg'],
+          description: 'Juguete de Bellatrix Lestrange',
+          categoryId: 11,
       }
       this.productsService.create(product)
       .subscribe(data=>{
@@ -228,7 +242,10 @@ export class ProductsComponent {
 
       updateProduct(){
         const changes: UpdateProductDTO={
-          images: [`https://m.media-amazon.com/images/I/71uDtF71f+L._AC_UY1100_.jpg`],
+          title: 'Chaqueta Griffindor',
+          price: 800,
+          images: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJpxYS1jhPvp8MS-TEUVei_Heh6om59XXjdQ&usqp=CAU'],
+          description: 'Chaqueta de la casa de Griffindor aesthetic'
         }
         const id = this.productChosen.id;
         this.productsService.update(id,changes)

@@ -11,7 +11,7 @@ import {environment} from '../../Environments/environment';
 })
 export class ProductsService {
 
-  private apiURL = `${environment.API_URL}/api/products`; //
+  private apiURL = `${environment.API_URL}`; //
 
   constructor(
     private http: HttpClient //Creamos el servicio y por inyeccion de dependencias incorporamos el cliente
@@ -19,7 +19,7 @@ export class ProductsService {
   }
 
   getAllProducts() { /*LLamamos a product service de todos los productos */
-      return this.http.get<Product[]>(this.apiURL)
+      return this.http.get<Product[]>(('https://api.escuelajs.co/api/v1/products'))
       .pipe( //Se reintenta esta peticion 3 veces si no entra a la URL
           retry(3)
       );
