@@ -33,7 +33,7 @@
         </ul>
         <form class="d-flex" role="search">
           <div class="account">
-            <button *ngIf="!token; else elseBlock" (click)="login()">Login</button>
+            <!--<button *ngIf="!token; else elseBlock" (click)="login()">Login</button>-->
             <ng-template  #elseBlock>{{ 'Bienvenido: '+ profile?.email }}</ng-template>
             <!--<button (click)="getProfile()">Get Profile</button> profile?.email-->
           </div>

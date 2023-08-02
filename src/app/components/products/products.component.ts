@@ -46,7 +46,7 @@ export class ProductsComponent {
       ngOnInit(){
         const predefinedProducts = [
           {
-            id: '1',
+            id: '243',
             title: 'Harry Potter',
             price: 500,
             images: ['./assets/images/potter.jpg'],
@@ -57,7 +57,7 @@ export class ProductsComponent {
             }
           },
           {
-            id: '2',
+            id: '243',
             title: 'Hermione Granger',
             price: 450,
             images: ['./assets/images/hermione.jpg'],
@@ -101,7 +101,7 @@ export class ProductsComponent {
             }
           },
           {
-            id: '6',
+            id: '243',
             title: 'Sirious Black',
             price: 280,
             images: ['./assets/images/Sirius.jpg'],
@@ -156,7 +156,7 @@ export class ProductsComponent {
             }
           } ];
         //this.productsService.getAllProducts() Se traen todos los productos
-        this.productsService.getProductsByPage(10,0) //Se traen 10 productos en la pagina 0
+        this.productsService.getProductsByPage(20,0) //Se traen 10 productos en la pagina 0
         .subscribe(data =>{
           this.products = predefinedProducts.concat(data);
           this.offset += this.limit;
@@ -189,7 +189,7 @@ export class ProductsComponent {
     const predefinedProduct = this.predefinedProducts.find((product) => product.id === id);
 
     if (predefinedProduct) {
-      this.productChosen = predefinedProduct;
+      this.productChosen = JSON.parse(JSON.stringify(predefinedProduct));
       this.statusDetail = 'sucess';
     } else {
       // Producto no encontrado en predefinedProducts, obtenerlo del servicio

@@ -19,6 +19,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
+import { CategoryComponent } from './pages/category/category.component';
 
 register();
 
@@ -38,6 +39,7 @@ register();
     LoginComponent,
     ProfileComponent,
     HomeComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,

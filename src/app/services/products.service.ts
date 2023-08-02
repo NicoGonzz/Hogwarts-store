@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams, HttpStatusCode } from '@angular/common/http';
 import { zip } from 'rxjs'; //Permite enviar 2 observadores y recibir respuestas de ambos al tiempo
 import { delay, retry,catchError } from 'rxjs'; //Reintenta una peticion
 import { throwError } from 'rxjs';
@@ -17,6 +17,15 @@ export class ProductsService {
     private http: HttpClient //Creamos el servicio y por inyeccion de dependencias incorporamos el cliente
   ) {
   }
+    getByCategory(categoryId:string ,limit?: number , offset?:number){
+      let params = new HttpParams();
+      if(limit && offset != null){
+        params = params.set('limit',limit);
+        params = params.set('offset',offset);
+      }
+        return this.http.get<Product[]>(('https://api.escuelajs.co/api/v1/products'),{params})
+
+    }
 
   getAllProducts() { /*LLamamos a product service de todos los productos */
       return this.http.get<Product[]>(('https://api.escuelajs.co/api/v1/products'))
