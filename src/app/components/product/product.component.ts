@@ -27,7 +27,7 @@ export class ProductComponent {
   constructor() {}
 
   ngOnInit(): void{
-    this.accionCompra = `AÑADIR AL CARRITO`;
+    this.accionCompra = `Comprar Producto`;
   }
 
   onAddtoCar(){

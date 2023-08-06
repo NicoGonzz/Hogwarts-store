@@ -5,9 +5,8 @@
     <div class="column">
       <nav>
         <p>
-          Detalle Compra
+          Detalle Compra | Total Productos: {{myShoppingCart.length}}
         </p>
-
         <div class="panel-block"  *ngFor="let item of myShoppingCart">
           {{item.title}}
           <span>
@@ -17,24 +16,22 @@
       </nav>
     </div>
 
-    <div class="colums">
-        <div>
+
+        <div class="under-Detail">
           <div>
             <div>
-              <h2>Total {{total | currency}}</h2>
+              <h2 class="detail-total">Total {{total | currency}}</h2>
             </div>
-            <button (click)="realizarPago()">
+            <button class="buy-Button" (click)="realizarPago()">
               Buy Now
             </button>
           </div>
         </div>
-    </div>
+
 
   </div>
 </section>
 <div class="paragraphs-container">
-  <p>Cantidad de productos en mi carrito de compras: {{myShoppingCart.length}}</p>
-  <p>Total $$: {{total}}</p>
   <p>Today: {{today | date: 'short'}}</p>
   <p>Tiempo Conexion : {{today | timeAgo}}</p>
 </div>
