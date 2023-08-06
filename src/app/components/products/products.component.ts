@@ -274,4 +274,7 @@ export class ProductsComponent {
         this.offset = this.limit;//Cuando se haga el request se aumenten los elementos del limit
       });
     }
+    realizarPago(){
+
+    }
 }

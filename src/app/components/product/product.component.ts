@@ -7,6 +7,8 @@ import { Product}  from '../../models/products.model'; /*Importamos el modelo*/
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent {
+  private disabled:boolean = false;
+  public accionCompra:string ='';
 
   @Input() product: Product = {
     id: '',
@@ -23,9 +25,14 @@ export class ProductComponent {
   @Output() substractProduct =new EventEmitter<Product>();
   @Output() showProduct = new EventEmitter<string>();
   constructor() {}
-  ngOnInit(): void{}
+
+  ngOnInit(): void{
+    this.accionCompra = `AÑADIR AL CARRITO`;
+  }
 
   onAddtoCar(){
+      this.disabled = true;
+      this.accionCompra = `ADDED TO CART`;
       this.addedProduct.emit(this.product);//Emitimos el producto
   }
   onSubstractcar(){
@@ -33,5 +40,8 @@ export class ProductComponent {
   }
   onShowDetail(){
     this.showProduct.emit(this.product.id); //Emitimos el producto y devolvera el id del producto
+  }
+  isDisabled(){
+    return !!this.disabled;
   }
 }

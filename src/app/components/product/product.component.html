@@ -4,7 +4,11 @@
   <h2>{{product.price | currency: 'COP '}}</h2>
     <p>{{product.title | uppercase}}</p>
     <button (click)="onShowDetail()">Detalles Producto</button>
-    <button (click)="onAddtoCar()">Añadir Producto</button>
+    <button (click)="onAddtoCar()"
+    [disabled]="isDisabled()"
+    [ngClass]="{ 'is-danger': !isDisabled()}"
+    >
+    {{accionCompra}}</button>
     <button (click)="onSubstractcar()">Quitar Producto</button>
 </div>
 
