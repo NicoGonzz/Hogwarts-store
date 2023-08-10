@@ -1,7 +1,10 @@
-<form class="form-registro" method="POST">
+<form class="form-registro" [formGroup]="formulario" (ngSubmit)="onSubmit(formulario)" novalidate>
   <h4>Ingresa ahora</h4>
-  <input class="control" type="email" name="email" id="email" placeholder="Ingrese su Correo" required>
-  <input class="control" type="password" name="password" id="password" placeholder="Ingrese su contraseña" required>
-  <button class="button"  type="submit"  >Ingresar</button>
-    <div class="error"></div>
+  <input formControlName="email" class="control"  placeholder="Ingrese su Correo" required>
+  <div class="error"
+  *ngIf="formulario.get('email')?.hasError('required')">Please provide a valid email.</div>
+  <input formControlName="password"  class="control" placeholder="Ingrese su contraseña" required
+  [type]="passwordVisible ? 'text' : 'password'">
+  <button type="button" (click)="togglePasswordVisibility()">Mostrar contraseña</button>
+  <input  type="submit" [disabled]="!formulario.valid">
 </form>

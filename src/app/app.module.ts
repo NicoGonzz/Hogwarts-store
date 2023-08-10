@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http'; // Habilitamos el modulo para hacer request de los servicios HTTP
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { register } from 'swiper/element/bundle';
@@ -46,6 +46,7 @@ register();
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule
 
   ],
   providers: [

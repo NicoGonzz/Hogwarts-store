@@ -1,8 +1,10 @@
-<form class="form-registro" method="POST" >
+<form class="form-registro" [formGroup]="formulario" (ngSubmit)="onSubmit(formulario)" novalidate >
     <h4>Registrate ahora</h4>
-    <input class="control" type="text" name="name" id="name" placeholder="Ingrese su Nombre" required>
-    <input class="control" type="text" name="apellido" id="apellido" placeholder="Ingrese su Apellido" required>
-    <input class="control" type="email" name="email" id="email" placeholder="Ingrese su Correo" required>
-    <input class="control" type="password" name="password" id="password" placeholder="Ingrese su contraseña" required>
-    <button class="button"  type="submit"  value="Registrarme">Registrate</button>
+    <input formControlName="name" class="control"  placeholder="Ingrese su Nombre" required>
+    <input formControlName="lastname" class="control"  placeholder="Ingrese su Apellido" required>
+    <input formControlName="email" class="control"  placeholder="Ingrese su Correo" required>
+    <input formControlName="password" class="control"  placeholder="Ingrese su contraseña" required
+    [type]="passwordVisible ? 'text' : 'password'">
+    <button type="button" (click)="togglePasswordVisibility()">Mostrar contraseña</button>
+    <input  type="submit" [disabled]="!formulario.valid">
   </form>
