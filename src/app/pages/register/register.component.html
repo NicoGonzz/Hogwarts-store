@@ -5,6 +5,6 @@
     <input formControlName="email" class="control"  placeholder="Ingrese su Correo" required>
     <input formControlName="password" class="control"  placeholder="Ingrese su contraseña" required
     [type]="passwordVisible ? 'text' : 'password'">
-    <button type="button" (click)="togglePasswordVisibility()">Mostrar contraseña</button>
-    <input  type="submit" [disabled]="!formulario.valid">
+    <button class="button" type="button" (click)="togglePasswordVisibility()">Mostrar contraseña</button>
+    <input  class="send-button"  type="submit" [disabled]="!formulario.valid">
   </form>
