@@ -158,7 +158,7 @@ export class ProductsComponent {
         //this.productsService.getAllProducts() Se traen todos los productos
         this.productsService.getProductsByPage(20,0) //Se traen 10 productos en la pagina 0
         .subscribe(data =>{
-          this.products = predefinedProducts.concat(data);
+          this.products = data;
           this.offset += this.limit;
         });// Funcion para traer datos
       }

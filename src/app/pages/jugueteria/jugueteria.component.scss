@@ -1,0 +1,122 @@
+.product-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .product {
+
+    max-width: 400px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+
+    @media (min-width: 40em) {
+      max-width: none;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .under-detail {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .detail-total {
+    font-size: larger;
+    margin-left: 46%;
+  }
+
+  .buy-Button {
+    padding: 10px 20px;
+    background: url('../../../assets/images/NavBarHarryPotter.jpg');
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 70%;
+
+    @media (min-width: 40em) {
+      width: -webkit-fill-available;
+    }
+  }
+
+  .products--grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .moreProducts {
+    font-size: 20px;
+    background: linear-gradient(to right, yellow, red, orange);
+    color: black;
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: 40px;
+    display: block;
+  }
+
+  .product-detail {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    bottom: 0;
+    right: 0;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: all ease-out 0.5s;
+    transform: translateX(100%);
+
+    &.active {
+      transform: translateX(0);
+    }
+
+    img {
+      width: 250px;
+      height: 250px;
+    }
+  }
+
+
+  // Dimensiones para tablets
+  @media screen and (min-width: 40em) and (max-width: 63.9em) {
+.products--grid {
+      display: flex;
+      align-items: center;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 15px;
+      justify-content: center;
+    }
+  }
+
+  // Dimensiones para web
+  @media screen and (min-width: 64em) {
+    .products--grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-gap: 15px;
+    }
+  }
+}
