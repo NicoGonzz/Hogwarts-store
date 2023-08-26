@@ -1,11 +1,10 @@
 <section class="product-list">
   <div class="products--grid">
     <div *ngFor="let product of products" class="product">
-      <img [src]="product.images[0]" alt="{{ product.title }}" />
+      <img  [src]="product.images[0]" alt="{{ product.title }}" />
       <h2>{{product.price | currency: 'COP '}}</h2>
       <p>{{product.title | uppercase}}</p>
       <p>{{ product.description }}</p>
-      <p class="detail-total">{{ product.price | currency:'USD' }}</p>
       <button class="buy-Button">Comprar</button>
     </div>
   </div>

@@ -2,7 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  @media (min-width: 40em) {
+    display: flex;
+    align-items: center;
+  }
   .product {
 
     max-width: 400px;
@@ -16,8 +19,13 @@
     }
 
     img {
-      width: 100%;
-      height: auto;
+      width: 150px;
+      height: 150px;
+      align-items: center;
+      @media (min-width: 40em) {
+        width: 350px;
+        height: 250px;
+      }
     }
 
     h3 {
@@ -100,13 +108,15 @@
   }
 
 
+
   // Dimensiones para tablets
   @media screen and (min-width: 40em) and (max-width: 63.9em) {
 .products--grid {
-      display: flex;
+      display: grid;
       align-items: center;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 15px;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 50px;
+      margin-left: 50px;
       justify-content: center;
     }
   }
@@ -115,7 +125,7 @@
   @media screen and (min-width: 64em) {
     .products--grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       grid-gap: 15px;
     }
   }
