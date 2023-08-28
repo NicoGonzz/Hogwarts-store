@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams, HttpStatusCode } from '@angular/common/http';
 import { zip } from 'rxjs'; //Permite enviar 2 observadores y recibir respuestas de ambos al tiempo
-import { delay, retry,catchError } from 'rxjs'; //Reintenta una peticion
+import { delay, retry,catchError,Observable } from 'rxjs'; //Reintenta una peticion
 import { throwError } from 'rxjs';
 import { Product , CreateProductDTO,UpdateProductDTO} from '../models/products.model';
 import {environment} from '../../Environments/environment';
@@ -77,6 +77,11 @@ export class ProductsService {
 
    delete(id: string){
     return this.http.delete<boolean>(`${this.apiURL}/${id}`); //Retorna un boolean para ver si borro o no el elemento
+   }
+
+   searchProductsByName(name: string): Observable<Product[]> {
+    const params = new HttpParams().set('name', name); // Agrega el parámetro de búsqueda 'name'
+    return this.http.get<Product[]>(`${this.apiURL}`, { params })
    }
 
 }

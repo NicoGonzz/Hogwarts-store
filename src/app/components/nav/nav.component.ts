@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { StoreService } from 'src/app/services/store.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ProductsService } from 'src/app/services/products.service';
+import { Product } from 'src/app/models/products.model';
 import { User } from 'src/app/models/user.model';
 import { Subscription } from 'rxjs';
 
@@ -11,6 +13,8 @@ import { Subscription } from 'rxjs';
 })
 export class NavComponent {
 
+      searchTerm: string = ''; // Variable para almacenar el término de búsqueda
+      searchResults: Product[] = []; // Variable para almacenar los resultados de la búsqueda
       activeMenu = false;
       counter = 0;
       token = '';
@@ -22,6 +26,7 @@ export class NavComponent {
       constructor (
         private storeService: StoreService,
         private authService : AuthService,
+        private productService: ProductsService,
       ){}
 
       ngOnInit(): void{
@@ -49,6 +54,12 @@ export class NavComponent {
         .subscribe(user =>{
           this.profile = user;
         })
+      }
+
+      searchProducts() {
+        this.productService.searchProductsByName(this.searchTerm).subscribe(results => {
+          this.searchResults = results; // Asigna los resultados de la búsqueda a la variable
+        });
       }
 
 }

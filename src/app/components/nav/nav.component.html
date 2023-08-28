@@ -38,13 +38,14 @@
             <a class="nav-link" href="#" type="button" [routerLink]="['/login']">Login</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
+        <form class="d-flex" role="search" (ngSubmit)="searchProducts()">
           <div class="account">
             <!--<button *ngIf="!token; else elseBlock" (click)="login()">Login</button>-->
             <ng-template  #elseBlock>{{ 'Bienvenido: '+ profile?.email }}</ng-template>
             <!--<button (click)="getProfile()">Get Profile</button> profile?.email-->
           </div>
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+          [(ngModel)]="searchTerm">
           <button class="btnSearch btn-outline-success" type="submit">Search</button>
         </form>
       </div>
