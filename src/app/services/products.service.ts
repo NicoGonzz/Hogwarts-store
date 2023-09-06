@@ -23,7 +23,7 @@ export class ProductsService {
         params = params.set('limit',limit);
         params = params.set('offset',offset);
       }
-        return this.http.get<Product[]>(('https://api.escuelajs.co/api/v1/products'),{params})
+        return this.http.get<Product[]>((`https://api.escuelajs.co/api/v1/products/categories/${categoryId}/products`),{params})
 
     }
 

@@ -1,3 +1,11 @@
+<section class="cart centered-cart">
+  <h3>Shopping Cart</h3>
+  <ul>
+    <li *ngFor="let cartProduct of cart">{{ cartProduct.title }} - {{ cartProduct.price | currency: 'COP ' }}</li>
+  </ul>
+  <p>Total: {{ totalPrice | currency: 'COP ' }}</p>
+</section>
+
 <section class="product-list">
   <div class="products--grid">
     <div *ngFor="let product of products" class="product">
@@ -5,7 +13,12 @@
       <h2>{{product.price | currency: 'COP '}}</h2>
       <p>{{product.title | uppercase}}</p>
       <p>{{ product.description }}</p>
-      <button class="buy-Button">Comprar</button>
+      <button class="buy-Button" (click)="onAddtoCar(product)"
+      [disabled]="isProductAddedToCart(product)"
+      [ngClass]="{ 'is-danger': !isDisabled()}"
+    > {{accionCompra}}</button>
     </div>
   </div>
 </section>
+
+

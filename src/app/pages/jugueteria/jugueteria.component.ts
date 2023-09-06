@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductsComponent } from 'src/app/components/products/products.component';
+import { Product}  from '../../models/products.model';
+import { Output,EventEmitter,Input } from '@angular/core';
+
 @Component({
   selector: 'app-jugueteria',
   templateUrl: './jugueteria.component.html',
@@ -7,6 +9,24 @@ import {ProductsComponent } from 'src/app/components/products/products.component
 })
 export class JugueteriaComponent implements OnInit {
 
+  @Output() addedProduct =new EventEmitter<Product>();
+
+  @Input() product: Product = {
+    id: '',
+    price: 0,
+    images: [],
+    title: '',
+    category: {
+      id: '',
+      name: '',
+    },
+    description: ''
+  };
+  cart: Product[] = [];
+  private disabled:boolean = false;
+  public accionCompra:string ='';
+
+  totalPrice: number = 0;
   predefinedProducts: any[] = [];
   products : any[] = [];
   constructor() {
@@ -120,10 +140,49 @@ export class JugueteriaComponent implements OnInit {
           id: '',
           name: ''
         }
+      },
+      {
+        id: '249',
+        title: 'funko neville longbottom',
+        price: 480,
+        images: ['https://http2.mlstatic.com/D_Q_NP_906293-MLA52797591571_122022-O.webp'],
+        description: 'Juguetito chevere de Neville Longbottom',
+        category: {
+          id: '',
+          name: ''
+        }
+      },
+      {
+        id: '248',
+        title: 'Snape',
+        price: 280,
+        images: ['https://http2.mlstatic.com/D_NQ_NP_706562-MCO70559090564_072023-O.webp'],
+        description: 'Juguetito chevere de Snape',
+        category: {
+          id: '',
+          name: ''
+        }
       }
     ];
 }
-  ngOnInit(){
+  ngOnInit(): void{
     this.products = this.predefinedProducts;
+    this.accionCompra = `Comprar Producto`;
   }
+  calculateTotalPrice() {
+    this.totalPrice = this.cart.reduce((total, product) => total + product.price, 0);
+  }
+  onAddtoCar(product:Product){
+    this.cart.push(product);
+    this.disabled = true;
+    this.accionCompra = `ADDED TO CART`;
+     this.calculateTotalPrice();
+    this.addedProduct.emit(this.product);//Emitimos el producto
+}
+isProductAddedToCart(product: Product) {
+  return this.cart.some((cartProduct) => cartProduct.id === product.id);
+}
+isDisabled(){
+  return !!this.disabled;
+}
 }
