@@ -11,7 +11,7 @@ export class AppComponent {
   imgParent = '';
   showImg= true;
   token= '';//Guardamos el token en memoria
-
+  title = 'Hogwarts-store';
   constructor(
     private authService : AuthService,
     private usersService: UsersService

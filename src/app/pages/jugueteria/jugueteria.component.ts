@@ -47,7 +47,7 @@ export class JugueteriaComponent implements OnInit {
         title: 'Hermione Granger',
         price: 450,
         images: ['./assets/images/hermione.jpg'],
-        description: 'Coleccionable Hermoine Granger',
+        description: 'Coleccionable Hermione Granger',
         category: {
           id: '',
           name: ''
