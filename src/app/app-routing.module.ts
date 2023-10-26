@@ -44,11 +44,14 @@ const routes: Routes = [
   component: ProductDetailComponent,
 },
 {
+  path: 'cms', //sistema administracion contenido
+  loadChildren: () => import('./cms/cms.module').then(m => m.CmsModule)
+},
+{
   path: '**',
   redirectTo: '/home',
   pathMatch: 'full',
-}
-
+},
 ];
 
 @NgModule({
