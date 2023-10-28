@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
 import { UsersService } from './services/users.service';
 import { ActivatedRoute,NavigationEnd } from '@angular/router';
 import { Router } from '@angular/router';
@@ -15,14 +14,14 @@ export class AppComponent {
   token= '';//Guardamos el token en memoria
   title = 'Hogwarts-store';
   constructor(
-    private authService : AuthService,
     private usersService: UsersService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ){
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.isCmsRoute = this.activatedRoute.snapshot.url[0]?.path === 'cms/grid';
+           const currentRoute = this.router.url;
+           this.isCmsRoute = currentRoute.includes('/cms/') //Excluye la ruta CMS de la navbar
       }
     });
   }
