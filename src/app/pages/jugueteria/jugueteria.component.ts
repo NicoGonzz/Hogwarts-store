@@ -25,7 +25,7 @@ export class JugueteriaComponent implements OnInit {
   cart: Product[] = [];
   private disabled:boolean = false;
   public accionCompra:string ='';
-
+  showCart: boolean = false;
   totalPrice: number = 0;
   predefinedProducts: any[] = [];
   products : any[] = [];
@@ -208,9 +208,10 @@ export class JugueteriaComponent implements OnInit {
   onAddtoCar(product:Product){
     this.cart.push(product);
     this.disabled = true;
-    this.accionCompra = `ADDED TO CART`;
-     this.calculateTotalPrice();
-    this.addedProduct.emit(this.product);//Emitimos el producto
+    this.accionCompra = `Comprar Producto`;
+    this.showCart = true;
+    this.calculateTotalPrice();
+    this.addedProduct.emit(product);//Emitimos el producto
 }
 isProductAddedToCart(product: Product):boolean {
   return this.cart.some((item) => item.id === product.id);

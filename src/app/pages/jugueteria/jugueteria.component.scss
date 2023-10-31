@@ -1,19 +1,25 @@
 .centered-cart {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 15px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9;
-  margin: 0 auto;
-  max-width: 500px; /* Adjust this value as needed for responsiveness */
+  padding: 10px;
+  li{
+    text-align: center;
+    font-weight: 400;
+  }
+  p {
+    text-align: center;
+    font-weight: bold;
+  }
+  @media (min-width: 40em) {
+    max-width: none;
+  }
 }
 
-/* Style for the total price */
-.centered-cart p {
+/* Estilo para el precio total */
+.centered-cart p.centered-cart-total {
   margin-top: 10px;
   font-weight: bold;
 }

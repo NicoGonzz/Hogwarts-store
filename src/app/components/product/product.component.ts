@@ -36,6 +36,8 @@ export class ProductComponent {
       this.addedProduct.emit(this.product);//Emitimos el producto
   }
   onSubstractcar(){
+      this.disabled = false;
+      this.accionCompra = `Comprar Producto`;
       this.substractProduct.emit(this.product);
   }
   onShowDetail(){
