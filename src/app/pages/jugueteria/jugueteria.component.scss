@@ -5,51 +5,31 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
-  li{
+
+  li, p {
     text-align: center;
     font-weight: 400;
   }
-  p {
-    text-align: center;
+
+  p.centered-cart-total {
+    margin-top: 10px;
     font-weight: bold;
   }
-  @media (min-width: 40em) {
-    max-width: none;
-  }
-}
-
-/* Estilo para el precio total */
-.centered-cart p.centered-cart-total {
-  margin-top: 10px;
-  font-weight: bold;
 }
 
 .product-list {
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (min-width: 40em) {
-    display: flex;
-    align-items: center;
-  }
-  .product {
 
+  .product {
     margin-bottom: 2px;
     border-radius: 15px;
     padding: 10px;
 
-    @media (min-width: 40em) {
-      max-width: none;
-    }
-
     img {
       width: 150px;
       height: 150px;
-      align-items: center;
-      @media (min-width: 40em) {
-        width: 250px;
-        height: 250px;
-      }
     }
 
     h3 {
@@ -131,11 +111,8 @@
     }
   }
 
-
-
-  // Dimensiones para tablets
   @media screen and (min-width: 40em) and (max-width: 63.9em) {
-.products--grid {
+    .products--grid {
       display: grid;
       align-items: center;
       grid-template-columns: repeat(2, 1fr);
@@ -145,7 +122,6 @@
     }
   }
 
-  // Dimensiones para web
   @media screen and (min-width: 64em) {
     .products--grid {
       display: grid;
