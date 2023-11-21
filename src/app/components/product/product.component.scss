@@ -12,3 +12,13 @@ button{
   margin-left: 55px;
   width: 60%;
 }
+@media (max-width: 40em) {
+.products--grid{
+  align-items: center;
+  margin-left: 20%;
+}
+button{
+  margin-left: 15px;
+  width: 60%;
+}
+}

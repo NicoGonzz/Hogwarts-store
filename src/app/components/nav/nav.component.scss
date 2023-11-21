@@ -20,24 +20,40 @@
 }
 // MOBILE
 
-.side-menu{
+.side-menu {
   position: fixed;
-  background: url('../../../assets/images/Griffindor.jpg') center;
+  background: rgb(87, 8, 8) center;
   top: 0;
   left: 0px;
   bottom: 0;
   right: 0;
   display: flex;
+  font-family: serif;
   flex-direction: column;
   justify-content: flex-start;
   transform: translateX(-100%);
-  transition: all ease-out .5s;
-  &.active{
+  transition: all ease-out 0.5s;
+
+  &.active {
     transform: translateX(0);
   }
-  .nav-link{
-    font-size: 30px;
-    margin-top: 60px;
+  .button-sidemenu{
+    border-radius: 10px;
+    height: 100px;
     color: black;
+    font-size: xx-large;
+  }
+  .nav-link {
+    font-size: 30px;
+    margin-top: 20px; /* Distancia entre cada elemento */
+    color: white;
+    margin: 0 auto;
+    text-decoration: none; /* Para eliminar el subrayado predeterminado */
+    transition: color 0.3s ease; /* Transición de cambio de color */
+    padding: 0px 0px 80px /* Margen alrededor del texto */
+  }
+
+  .nav-link:hover {
+    color: yellow; /* Cambio de color al pasar el ratón */
   }
 }

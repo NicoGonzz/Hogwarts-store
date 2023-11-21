@@ -14,7 +14,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
         <div class="side-menu" [class.active]="activeMenu">
-            <button (click)="toggleMenu()">CLOSE</button>
+            <button class="button-sidemenu" (click)="toggleMenu()">CLOSE</button>
               <a class="nav-link" href="#" type="button" (click)="toggleMenu()" [routerLink]="['/categories/1']" >Ropa</a>
               <a class="nav-link" href="#" type="button" (click)="toggleMenu()" [routerLink]="['/jugueteria']">Jugueteria</a>
               <a class="nav-link" href="#" type="button" (click)="toggleMenu()" [routerLink]="['/register']">Registro</a>
