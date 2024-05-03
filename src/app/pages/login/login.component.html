@@ -6,5 +6,5 @@
   <input formControlName="password"  class="control" placeholder="Ingrese su contraseña" required
   [type]="passwordVisible ? 'text' : 'password'">
   <button class= "button" type="button" (click)="togglePasswordVisibility()">Mostrar contraseña</button>
-  <input class="send-button" type="submit" [disabled]="!formulario.valid">
+  <button type="button" class="send-button" type="submit" [disabled]="!formulario.valid">Enviar</button>
 </form>
